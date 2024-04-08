@@ -1,3 +1,3 @@
 ### Hi This Is Not Done Yet Many Changes To Be Added
-- <h1><p>Added A Frame For Gameplay</p></h1>
-- <h1><p>Responsive Difficulties</p></h1>
+- <b><p>Added A Frame For Gameplay</p></b>
+- <b><p>Responsive Difficulties</p></b>
