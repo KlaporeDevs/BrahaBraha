@@ -33,13 +33,16 @@ public class GameFrame extends JFrame{
         Settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                showSettingsDialog();
             }
         });
         Exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+               int pili = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Exit", "Exit", JOptionPane.YES_NO_OPTION);
+               if (pili == JOptionPane.YES_OPTION){
+                   System.exit(0);
+               }
             }
         });
         //Layouts
@@ -60,5 +63,34 @@ public class GameFrame extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+    }
+    private void showSettingsDialog(){
+        //Settings Contents
+        JDialog settingsDialogs = new JDialog(this, "Settings", true);
+        settingsDialogs.setSize(300, 250);
+        settingsDialogs.setLayout(null);
+        settingsDialogs.setLocationRelativeTo(this);
+        //Components
+        JCheckBox fullscreen = new JCheckBox("FullScreen");
+        fullscreen.setBounds(20, 20, 150, 30);
+        JCheckBox timer = new JCheckBox("Timer On/Off");
+        timer.setBounds(20, 60, 150, 30);
+        JLabel musiclabel = new JLabel("Music Volume");
+        musiclabel.setBounds(20, 100, 150, 30);
+        JSlider music = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
+        music.setBounds(20, 130, 200, 30);
+        JLabel sounds = new JLabel("Sound Volume");
+        sounds.setBounds(20, 160, 200, 30);
+        JSlider sound = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
+        sound.setBounds(20, 190, 200, 30);
+        //add to settings parts
+        settingsDialogs.add(fullscreen);
+        settingsDialogs.add(timer);
+        settingsDialogs.add(music);
+        settingsDialogs.add(musiclabel);
+        settingsDialogs.add(sound);
+        settingsDialogs.add(sounds);
+        //Visibility
+        settingsDialogs.setVisible(true);
     }
 }
