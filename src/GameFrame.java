@@ -97,20 +97,29 @@ public class GameFrame extends JFrame{
         musics.setBounds(20, 100, 150, 30);
         JSlider music = new JSlider(JSlider.HORIZONTAL, 0, 100, musicvolume);
         music.setBounds(20, 130, 200, 30);
+        music.setPaintTicks(false);
+        //Indicator
+        JLabel musicIndicator = new JLabel(musicvolume + "");
+        musicIndicator.setBounds(230, 130, 50, 30);
         music.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 musicvolume = music.getValue();
+                musicIndicator.setText(musicvolume + "");
             }
         });
         JLabel sounds = new JLabel("Sound Volume");
         sounds.setBounds(20, 160, 200, 30);
         JSlider sound = new JSlider(JSlider.HORIZONTAL, 0, 100, soundvolume);
         sound.setBounds(20, 190, 200, 30);
+        sound.setPaintTicks(false);
+        JLabel soundIndicator = new JLabel(soundvolume + "");
+        soundIndicator.setBounds(230, 160, 200, 30);
         sound.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 soundvolume = sound.getValue();
+                soundIndicator.setText(soundvolume + "");
             }
         });
         //Save Settings
@@ -129,7 +138,9 @@ public class GameFrame extends JFrame{
         settingsDialogs.add(timer);
         settingsDialogs.add(music);
         settingsDialogs.add(musics);
+        settingsDialogs.add(musicIndicator);
         settingsDialogs.add(sound);
+        settingsDialogs.add(soundIndicator);
         settingsDialogs.add(sounds);
         settingsDialogs.add(save);
         //Visibility
