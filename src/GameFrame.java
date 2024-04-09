@@ -11,6 +11,9 @@ public class GameFrame extends JFrame{
     private int musicvolume = 50;
     private int soundvolume = 50;
     GameFrame(){
+        //Icon
+        ImageIcon brahabrahalogo = new ImageIcon("logo.png");
+        setIconImage(brahabrahalogo.getImage());
         //Buttons
         Start = new JButton("Start");
         Settings = new JButton("Settings");
@@ -24,13 +27,21 @@ public class GameFrame extends JFrame{
                 //Choice Handling
                 switch(choice){
                     case 0:
-                        JOptionPane.showMessageDialog(null, "Easy Difficulty");
+                        JFrame easyFrame = new JFrame("Easy Difficulty - Memory Game");
+                        Easy easyPanel = new Easy(easyFrame);
+                        easyFrame.getContentPane().add(easyPanel);
+                        easyFrame.setSize(400, 400);
+                        easyFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        easyFrame.setLocationRelativeTo(null);
+                        easyFrame.setResizable(false);
+                        easyFrame.setVisible(true);
                         break;
                     case 1:
-                        JOptionPane.showMessageDialog(null, "Normal Difficulty");
+                        new Normal();
                         break;
                     case 2:
-                        JOptionPane.showMessageDialog(null, "Hard Diificulty");
+                        new Hard();
+                        break;
                 }
             }
         });
@@ -60,7 +71,6 @@ public class GameFrame extends JFrame{
         add(Settings);
         add(Exit);
         //Frame Set
-        this.add(new GamePanel());
         this.setSize(500, 600);
         this.setTitle("BrahaBraha");
         this.setVisible(true);
