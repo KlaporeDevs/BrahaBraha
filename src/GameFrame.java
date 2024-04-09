@@ -36,7 +36,7 @@ public class GameFrame extends JFrame{
                         easyFrame.setLocationRelativeTo(null);
                         easyFrame.setResizable(false);
                         easyFrame.setVisible(true);
-                        dispose();
+                        System.exit(0);
                         break;
                     case 1:
                         JFrame normalFrame = new JFrame("Normal Difficulty - Memory Game");
@@ -48,7 +48,7 @@ public class GameFrame extends JFrame{
                         normalFrame.setLocationRelativeTo(null);
                         normalFrame.setResizable(false);
                         normalFrame.setVisible(true);
-                        dispose();
+                        System.exit(0);
                         break;
                     case 2:
                         JFrame hardFrame = new JFrame("Hard Difficulty - Memory Game");
@@ -60,7 +60,7 @@ public class GameFrame extends JFrame{
                         hardFrame.setLocationRelativeTo(null);
                         hardFrame.setResizable(false);
                         hardFrame.setVisible(true);
-                        dispose();
+                        System.exit(0);
                         break;
                 }
             }
