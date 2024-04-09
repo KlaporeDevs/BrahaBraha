@@ -29,18 +29,38 @@ public class GameFrame extends JFrame{
                     case 0:
                         JFrame easyFrame = new JFrame("Easy Difficulty - Memory Game");
                         Easy easyPanel = new Easy(easyFrame);
+                        easyPanel.addWindowListener();
                         easyFrame.getContentPane().add(easyPanel);
                         easyFrame.setSize(400, 400);
                         easyFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         easyFrame.setLocationRelativeTo(null);
                         easyFrame.setResizable(false);
                         easyFrame.setVisible(true);
+                        dispose();
                         break;
                     case 1:
-                        new Normal();
+                        JFrame normalFrame = new JFrame("Normal Difficulty - Memory Game");
+                        Normal normalPanel = new Normal(normalFrame);
+                        normalPanel.addWindowListener();
+                        normalFrame.getContentPane().add(normalPanel);
+                        normalFrame.setSize(800, 700);
+                        normalFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        normalFrame.setLocationRelativeTo(null);
+                        normalFrame.setResizable(false);
+                        normalFrame.setVisible(true);
+                        dispose();
                         break;
                     case 2:
-                        new Hard();
+                        JFrame hardFrame = new JFrame("Hard Difficulty - Memory Game");
+                        Hard hardPanel = new Hard(hardFrame);
+                        hardPanel.addWindowListener();
+                        hardFrame.getContentPane().add(hardPanel);
+                        hardFrame.setSize(800, 700);
+                        hardFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        hardFrame.setLocationRelativeTo(null);
+                        hardFrame.setResizable(false);
+                        hardFrame.setVisible(true);
+                        dispose();
                         break;
                 }
             }
