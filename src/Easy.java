@@ -78,9 +78,12 @@ public class Easy extends JPanel {
                 buttonHeight = imgHeight;
             }
         }
+        int butts = buttonWidth + 10;
+        int butts1 = buttonHeight + 10;
 
         for (ImageIcon image : images) {
             JButton button = new JButton(image);
+            button.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
