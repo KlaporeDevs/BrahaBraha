@@ -37,7 +37,6 @@ public class Hard extends JPanel {
         });
         timer.start();
     }
-
     private int initialGame(JPanel gamePanel) {
         ArrayList<ImageIcon> images = new ArrayList<>();
         //Images Holder
@@ -51,11 +50,6 @@ public class Hard extends JPanel {
         ImageIcon image8 = new ImageIcon("Card8.png");
         ImageIcon image9 = new ImageIcon("Card9.png");
         ImageIcon image10 = new ImageIcon("Card10.png");
-        ImageIcon image11 = new ImageIcon("Card11.png");
-        ImageIcon image12 = new ImageIcon("Card12.png");
-        ImageIcon image13 = new ImageIcon("Card13.png");
-        ImageIcon image14 = new ImageIcon("Card14.png");
-        ImageIcon image15 = new ImageIcon("Card15.png");
         // Add to The Screen
         images.add(image1);
         images.add(image1);
@@ -77,16 +71,6 @@ public class Hard extends JPanel {
         images.add(image9);
         images.add(image10);
         images.add(image10);
-        images.add(image11);
-        images.add(image11);
-        images.add(image12);
-        images.add(image12);
-        images.add(image13);
-        images.add(image13);
-        images.add(image14);
-        images.add(image14);
-        images.add(image15);
-        images.add(image15);
         Collections.shuffle(images);
 
         int buttonWidth = 100;
@@ -94,7 +78,12 @@ public class Hard extends JPanel {
         int pairs = images.size() / 2;
 
         for (ImageIcon image : images) {
-            JButton button = new JButton(image);
+            // Scale the image to fit the button
+            Image img = image.getImage().getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
+            ImageIcon scaledImage = new ImageIcon(img);
+
+            JButton button = new JButton(scaledImage);
+            button.setPreferredSize(new Dimension(buttonWidth, buttonHeight)); // Set button size
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -107,9 +96,10 @@ public class Hard extends JPanel {
                             if (selectButton.getIcon().equals(clickedButton.getIcon())) {
                                 selectButton.setEnabled(false);
                                 clickedButton.setEnabled(false);
-                                if (pairMatched == pairs){
+                                pairMatched++;
+                                if (pairMatched == pairs) {
                                     timer.stop();
-                                    JOptionPane.showMessageDialog(frame, "Congratulations You've Earned A Points.");
+                                    JOptionPane.showMessageDialog(frame, "Congratulations! You've Earned A Points");
                                     frame.dispose();
                                     new GameFrame();
                                 }
@@ -129,7 +119,7 @@ public class Hard extends JPanel {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to close the game?", "Close Game", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to Quit the game?", "Return To Main Menu", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     frame.dispose();
                     new GameFrame();

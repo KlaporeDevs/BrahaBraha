@@ -79,7 +79,11 @@ public class Normal extends JPanel {
         int pairs = images.size() / 2;
 
         for (ImageIcon image : images) {
-            JButton button = new JButton(image);
+            Image img = image.getImage().getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
+            ImageIcon scaledImage = new ImageIcon(img);
+
+            JButton button = new JButton(scaledImage);
+            button.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -115,7 +119,7 @@ public class Normal extends JPanel {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to close the game?", "Close Game", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to Quit the game?", "Return To Main Menu", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     frame.dispose();
                     new GameFrame();

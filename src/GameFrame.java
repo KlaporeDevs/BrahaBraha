@@ -27,7 +27,7 @@ public class GameFrame extends JFrame{
                 //Choice Handling
                 switch(choice){
                     case 0:
-                        JFrame easyFrame = new JFrame("Easy Difficulty - Memory Game");
+                        JFrame easyFrame = new JFrame("Easy Difficulty - BrahaBraha");
                         Easy easyPanel = new Easy(easyFrame);
                         easyPanel.addWindowListener();
                         easyFrame.getContentPane().add(easyPanel);
@@ -39,7 +39,7 @@ public class GameFrame extends JFrame{
                         dispose();
                         break;
                     case 1:
-                        JFrame normalFrame = new JFrame("Normal Difficulty - Memory Game");
+                        JFrame normalFrame = new JFrame("Normal Difficulty - BrahaBraha");
                         Normal normalPanel = new Normal(normalFrame);
                         normalPanel.addWindowListener();
                         normalFrame.getContentPane().add(normalPanel);
@@ -51,7 +51,7 @@ public class GameFrame extends JFrame{
                         dispose();
                         break;
                     case 2:
-                        JFrame hardFrame = new JFrame("Hard Difficulty - Memory Game");
+                        JFrame hardFrame = new JFrame("Hard Difficulty - BrahaBraha");
                         Hard hardPanel = new Hard(hardFrame);
                         hardPanel.addWindowListener();
                         hardFrame.getContentPane().add(hardPanel);
