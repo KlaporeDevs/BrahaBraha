@@ -1,8 +1,10 @@
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.*;
 public class GameFrame extends JFrame{
+    private JPanel mainPanel;
     JButton Start;
     JButton Settings;
     JButton Exit;
@@ -14,6 +16,15 @@ public class GameFrame extends JFrame{
         //Icon
         ImageIcon brahabrahalogo = new ImageIcon("logo.png");
         setIconImage(brahabrahalogo.getImage());
+        mainPanel = new JPanel(){
+          @Override
+          protected void paintComponent(Graphics g){
+              super.paintComponent(g);
+              ImageIcon background = new ImageIcon("Background.png");
+              g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), null);
+          }
+        };
+        mainPanel.setLayout(null);
         //Buttons
         Start = new JButton("Start");
         Settings = new JButton("Settings");
@@ -87,9 +98,11 @@ public class GameFrame extends JFrame{
         Settings.setBounds(195, 150, 100, 30);
         Exit.setBounds(195, 200, 100, 30);
         //add Buttons
-        add(Start);
-        add(Settings);
-        add(Exit);
+        mainPanel.add(Start);
+        mainPanel.add(Settings);
+        mainPanel.add(Exit);
+
+        setContentPane(mainPanel);
         //Frame Set
         this.setSize(500, 600);
         this.setTitle("BrahaBraha");
