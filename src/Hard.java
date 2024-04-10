@@ -11,6 +11,7 @@ public class Hard extends JPanel {
     private JLabel timerLabel;
     private Timer timer;
     private int timeElapsed = 0;
+    private int pairMatched = 0;
 
     public Hard(JFrame frame) {
         this.frame = frame;
@@ -37,7 +38,7 @@ public class Hard extends JPanel {
         timer.start();
     }
 
-    private void initialGame(JPanel gamePanel) {
+    private int initialGame(JPanel gamePanel) {
         ArrayList<ImageIcon> images = new ArrayList<>();
         //Images Holder
         ImageIcon image1 = new ImageIcon("Card1.png");
@@ -88,6 +89,10 @@ public class Hard extends JPanel {
         images.add(image15);
         Collections.shuffle(images);
 
+        int buttonWidth = 100;
+        int buttonHeight = 100;
+        int pairs = images.size() / 2;
+
         for (ImageIcon image : images) {
             JButton button = new JButton(image);
             button.addActionListener(new ActionListener() {
@@ -102,6 +107,12 @@ public class Hard extends JPanel {
                             if (selectButton.getIcon().equals(clickedButton.getIcon())) {
                                 selectButton.setEnabled(false);
                                 clickedButton.setEnabled(false);
+                                if (pairMatched == pairs){
+                                    timer.stop();
+                                    JOptionPane.showMessageDialog(frame, "Congratulations You've Earned A Points.");
+                                    frame.dispose();
+                                    new GameFrame();
+                                }
                             } else {
                                 selectButton.setEnabled(true);
                             }
@@ -112,6 +123,7 @@ public class Hard extends JPanel {
             });
             gamePanel.add(button);
         }
+        return pairs;
     }
     public void addWindowListener() {
         frame.addWindowListener(new WindowAdapter() {
@@ -120,6 +132,7 @@ public class Hard extends JPanel {
                 int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to close the game?", "Close Game", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     frame.dispose();
+                    new GameFrame();
                 } else{
                     frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 }

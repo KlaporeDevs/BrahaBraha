@@ -7,10 +7,11 @@ import java.util.*;
 public class Easy extends JPanel {
     private JFrame frame;
     private JButton selectButton = null;
-    private JButton clickButton = null;
     private JLabel timerLabel;
     private Timer timer;
     private int timeElapsed = 0;
+    private int pairsMatched = 0;
+    private int totalPairs;
 
     public Easy(JFrame frame) {
         this.frame = frame;
@@ -24,7 +25,7 @@ public class Easy extends JPanel {
         // Initialize game board
         JPanel gamePanel = new JPanel(new GridLayout(2, 5));
         add(gamePanel, BorderLayout.CENTER);
-        initialGame(gamePanel);
+        totalPairs = initialGame(gamePanel);
 
         // Create timer
         timer = new Timer(1000, new ActionListener() {
@@ -37,7 +38,7 @@ public class Easy extends JPanel {
         timer.start();
     }
 
-    private void initialGame(JPanel gamePanel) {
+    private int initialGame(JPanel gamePanel) {
         ArrayList<ImageIcon> images = new ArrayList<>();
         //Images Holder
         ImageIcon image1 = new ImageIcon("Card1.png");
@@ -58,6 +59,10 @@ public class Easy extends JPanel {
         images.add(image5);
         Collections.shuffle(images);
 
+        int buttonWidth = 100;
+        int buttonHeight = 100;
+        int pairs = images.size() / 2; // Calculate total pairs
+
         for (ImageIcon image : images) {
             JButton button = new JButton(image);
             button.addActionListener(new ActionListener() {
@@ -72,6 +77,13 @@ public class Easy extends JPanel {
                             if (selectButton.getIcon().equals(clickedButton.getIcon())) {
                                 selectButton.setEnabled(false);
                                 clickedButton.setEnabled(false);
+                                pairsMatched++;
+                                if (pairsMatched == pairs) {
+                                    timer.stop();
+                                    JOptionPane.showMessageDialog(frame, "Congratulations You've Earned A Points");
+                                    frame.dispose();
+                                    new GameFrame();
+                                }
                             } else {
                                 selectButton.setEnabled(true);
                             }
@@ -82,7 +94,9 @@ public class Easy extends JPanel {
             });
             gamePanel.add(button);
         }
+        return pairs;
     }
+
     public void addWindowListener() {
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -90,7 +104,8 @@ public class Easy extends JPanel {
                 int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to close the game?", "Close Game", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     frame.dispose();
-                } else{
+                    new GameFrame();
+                } else {
                     frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 }
             }
