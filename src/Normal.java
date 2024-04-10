@@ -32,7 +32,10 @@ public class Normal extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 timeElapsed++;
-                timerLabel.setText("Time: " + timeElapsed);
+                int minutes = timeElapsed / 60;
+                int seconds = timeElapsed % 60;
+                String formatTime = String.format("%02d:%02d", minutes, seconds);
+                timerLabel.setText("Time: " + formatTime);
             }
         });
         timer.start();
@@ -77,13 +80,21 @@ public class Normal extends JPanel {
         int buttonWidth = 100;
         int buttonHeight = 100;
         int pairs = images.size() / 2;
+        for (ImageIcon image : images){
+            Image img = image.getImage();
+            int imgWidth = img.getWidth(null);
+            int imgHeight = img.getHeight(null);
+
+            if (imgWidth > buttonWidth){
+                buttonWidth = imgWidth;
+            }
+            if (imgHeight > buttonHeight){
+                buttonHeight = imgHeight;
+            }
+        }
 
         for (ImageIcon image : images) {
-            Image img = image.getImage().getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
-            ImageIcon scaledImage = new ImageIcon(img);
-
-            JButton button = new JButton(scaledImage);
-            button.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
+            JButton button = new JButton(image);
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -119,7 +130,7 @@ public class Normal extends JPanel {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to Quit the game?", "Return To Main Menu", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to close the game?", "Close Game", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     frame.dispose();
                     new GameFrame();

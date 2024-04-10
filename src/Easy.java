@@ -32,7 +32,10 @@ public class Easy extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 timeElapsed++;
-                timerLabel.setText("Time: " + timeElapsed);
+                int minutes = timeElapsed / 60;
+                int seconds = timeElapsed % 60;
+                String formatTime = String.format("%02d:%02d", minutes, seconds);
+                timerLabel.setText("Time: " + formatTime);
             }
         });
         timer.start();
@@ -40,7 +43,7 @@ public class Easy extends JPanel {
 
     private int initialGame(JPanel gamePanel) {
         ArrayList<ImageIcon> images = new ArrayList<>();
-        // Images Holder
+        //Images Holder
         ImageIcon image1 = new ImageIcon("Card1.png");
         ImageIcon image2 = new ImageIcon("Card2.png");
         ImageIcon image3 = new ImageIcon("Card3.png");
@@ -63,12 +66,21 @@ public class Easy extends JPanel {
         int buttonHeight = 100;
         int pairs = images.size() / 2;
 
-        for (ImageIcon image : images) {
-            Image img = image.getImage().getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
-            ImageIcon scaledImage = new ImageIcon(img);
+        for (ImageIcon image : images){
+            Image img = image.getImage();
+            int imgWidth = img.getWidth(null);
+            int imgHeight = img.getHeight(null);
 
-            JButton button = new JButton(scaledImage);
-            button.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
+            if (imgWidth > buttonWidth) {
+                buttonWidth = imgWidth;
+            }
+            if (imgHeight > buttonHeight){
+                buttonHeight = imgHeight;
+            }
+        }
+
+        for (ImageIcon image : images) {
+            JButton button = new JButton(image);
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -84,7 +96,7 @@ public class Easy extends JPanel {
                                 pairsMatched++;
                                 if (pairsMatched == pairs) {
                                     timer.stop();
-                                    JOptionPane.showMessageDialog(frame, "Congratulations You've Earned A Points");
+                                    JOptionPane.showMessageDialog(frame, "Congratulations! You've Earned A Points");
                                     frame.dispose();
                                     new GameFrame();
                                 }
@@ -100,11 +112,12 @@ public class Easy extends JPanel {
         }
         return pairs;
     }
+
     public void addWindowListener() {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to Quit the game?", "Return To Main Menu", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to close the game?", "Close Game", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     frame.dispose();
                     new GameFrame();
