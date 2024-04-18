@@ -4,6 +4,10 @@
 - <b><p>GamePlay Sound</p></b>
 - <b><p>Pointing System</p></b>
 - <b><p>Flipping Cards</p></b>
+- <b><p>In-Game Shops</p></b>
+- <b><p>Sounds In Diffirent Levels</p></b>
+- <b><p>Contents of Shops</p></b>
+- <b><p>Currency Systems</p></b>
 ### This Is The Done's 
 - <b><p>Main Menu</p></b>
 - <b><p>Settings</p></b>
