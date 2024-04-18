@@ -1,9 +1,13 @@
+import javax.sound.sampled.*;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
-public class GameFrame extends JFrame{
+import java.io.File;
+import java.io.IOException;
+
+public class GameFrame extends JFrame {
     private JPanel mainPanel;
     JButton Start;
     JButton Settings;
@@ -12,17 +16,19 @@ public class GameFrame extends JFrame{
     private boolean timerchecked = false;
     private int musicvolume = 50;
     private int soundvolume = 50;
-    GameFrame(){
+    private Clip BgMusic;
+
+    GameFrame() {
         //Icon
         ImageIcon brahabrahalogo = new ImageIcon("logo.png");
         setIconImage(brahabrahalogo.getImage());
-        mainPanel = new JPanel(){
-          @Override
-          protected void paintComponent(Graphics g){
-              super.paintComponent(g);
-              ImageIcon background = new ImageIcon("Background.png");
-              g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), null);
-          }
+        mainPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon background = new ImageIcon("Background.png");
+                g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), null);
+            }
         };
         mainPanel.setLayout(null);
         //Buttons
@@ -33,22 +39,25 @@ public class GameFrame extends JFrame{
         Start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                stopBackgroundMusic();
+                playEasySound();
                 String[] Choice = {"Easy", "Normal", "Hard"};
                 int choice = JOptionPane.showOptionDialog(null, "Choose Difficulty", "Select Difficulty", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, Choice, Choice[0]);
                 //Choice Handling
-                switch(choice){
+                switch (choice) {
                     case 0:
                         JFrame easyFrame = new JFrame("Easy Difficulty - BrahaBraha");
-                        Easy easyPanel = new Easy(easyFrame);
+                        Easy easyPanel = new Easy(easyFrame, "Easy.wav");
                         easyPanel.addWindowListener();
                         easyFrame.getContentPane().add(easyPanel);
-                        easyFrame.setSize(400, 400);
+                        easyFrame.setSize(800, 700);
                         easyFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         easyFrame.setLocationRelativeTo(null);
                         easyFrame.setResizable(false);
                         easyFrame.setVisible(true);
                         dispose();
                         break;
+
                     case 1:
                         JFrame normalFrame = new JFrame("Normal Difficulty - BrahaBraha");
                         Normal normalPanel = new Normal(normalFrame);
@@ -66,7 +75,7 @@ public class GameFrame extends JFrame{
                         Hard hardPanel = new Hard(hardFrame);
                         hardPanel.addWindowListener();
                         hardFrame.getContentPane().add(hardPanel);
-                        hardFrame.setSize(800, 700);
+                        hardFrame.setSize(900, 700);
                         hardFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         hardFrame.setLocationRelativeTo(null);
                         hardFrame.setResizable(false);
@@ -76,6 +85,7 @@ public class GameFrame extends JFrame{
                 }
             }
         });
+
         Settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,10 +95,10 @@ public class GameFrame extends JFrame{
         Exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               int pili = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Exit", "Exit", JOptionPane.YES_NO_OPTION);
-               if (pili == JOptionPane.YES_OPTION){
-                   System.exit(0);
-               }
+                int pili = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Exit", "Exit", JOptionPane.YES_NO_OPTION);
+                if (pili == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
             }
         });
         //Layouts
@@ -110,8 +120,42 @@ public class GameFrame extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        // Background Sounds
+        playBackgroundMusic("C:\\Users\\Janrich\\Desktop\\ITE186\\BrahaBraha\\src\\Bg.wav");
     }
-    private void showSettingsDialog(){
+
+    private void stopBackgroundMusic() {
+        if (BgMusic != null && BgMusic.isRunning()) {
+            BgMusic.stop();
+        }
+    }
+
+    private void playEasySound() {
+        try {
+            File audio = new File("C:\\Users\\Janrich\\Desktop\\ITE186\\BrahaBraha\\src\\Easy.wav");
+            AudioInputStream audios = AudioSystem.getAudioInputStream(audio);
+            BgMusic = AudioSystem.getClip();
+            BgMusic.open(audios);
+            BgMusic.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void playBackgroundMusic(String filePath) {
+        try {
+            File audioFile = new File(filePath);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+
+            BgMusic = AudioSystem.getClip();
+            BgMusic.open(audioStream);
+            BgMusic.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void showSettingsDialog() {
         //Settings Contents
         JDialog settingsDialogs = new JDialog(this, "Settings", true);
         settingsDialogs.setSize(300, 300);

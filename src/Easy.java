@@ -1,7 +1,10 @@
+import javax.sound.sampled.*;
 import javax.swing.*;
 import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public class Easy extends JPanel {
@@ -12,10 +15,12 @@ public class Easy extends JPanel {
     private int timeElapsed = 0;
     private int pairsMatched = 0;
     private int totalPairs;
+    private String soundFilePath;
 
-    public Easy(JFrame frame) {
+    public Easy(JFrame frame, String soundFilePath) {
         this.frame = frame;
         setLayout(new BorderLayout());
+        this.soundFilePath = soundFilePath;
 
         // Add timer label
         timerLabel = new JLabel("Time: " + timeElapsed);
@@ -66,7 +71,7 @@ public class Easy extends JPanel {
         int buttonHeight = 100;
         int pairs = images.size() / 2;
 
-        for (ImageIcon image : images){
+        for (ImageIcon image : images) {
             Image img = image.getImage();
             int imgWidth = img.getWidth(null);
             int imgHeight = img.getHeight(null);
@@ -74,7 +79,7 @@ public class Easy extends JPanel {
             if (imgWidth > buttonWidth) {
                 buttonWidth = imgWidth;
             }
-            if (imgHeight > buttonHeight){
+            if (imgHeight > buttonHeight) {
                 buttonHeight = imgHeight;
             }
         }
@@ -99,7 +104,7 @@ public class Easy extends JPanel {
                                 pairsMatched++;
                                 if (pairsMatched == pairs) {
                                     timer.stop();
-                                    JOptionPane.showMessageDialog(frame, "Congratulations! You've Earned A Points");
+                                    JOptionPane.showMessageDialog(frame, "Congratulations! You've Earned Points");
                                     frame.dispose();
                                     new GameFrame();
                                 }
@@ -120,14 +125,28 @@ public class Easy extends JPanel {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                timer.stop();
                 int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to close the game?", "Close Game", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     frame.dispose();
                     new GameFrame();
                 } else {
                     frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                    timer.start();
                 }
             }
         });
     }
+    private void playBackgroundSound(String filePath) {
+        try{
+            File audiof = new File(filePath);
+            AudioInputStream audios = AudioSystem.getAudioInputStream(audiof);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audios);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex){
+            ex.printStackTrace();
+        }
+    }
 }
+

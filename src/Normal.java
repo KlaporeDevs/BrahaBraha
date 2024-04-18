@@ -130,12 +130,14 @@ public class Normal extends JPanel {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                timer.stop();
                 int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to close the game?", "Close Game", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     frame.dispose();
                     new GameFrame();
                 } else{
                     frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                    timer.start();
                 }
             }
         });
