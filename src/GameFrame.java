@@ -12,11 +12,13 @@ public class GameFrame extends JFrame {
     JButton Start;
     JButton Settings;
     JButton Exit;
+    JLabel pointsLabel; // Added JLabel for displaying points
     private boolean fullscreenchecked = false;
     private boolean timerchecked = false;
     private int musicvolume = 50;
     private int soundvolume = 50;
     private Clip BgMusic;
+    private final CardPointings cardPointings;
 
     GameFrame() {
         //Icon
@@ -47,7 +49,8 @@ public class GameFrame extends JFrame {
                 switch (choice) {
                     case 0:
                         JFrame easyFrame = new JFrame("Easy Difficulty - BrahaBraha");
-                        Easy easyPanel = new Easy(easyFrame, "Easy.wav");
+                        JLabel pointsLabel = new JLabel("Points: 0");
+                        Easy easyPanel = new Easy(easyFrame, "Easy.wav", cardPointings, pointsLabel);
                         easyPanel.addWindowListener();
                         easyFrame.getContentPane().add(easyPanel);
                         easyFrame.setSize(800, 700);
@@ -111,6 +114,11 @@ public class GameFrame extends JFrame {
         mainPanel.add(Start);
         mainPanel.add(Settings);
         mainPanel.add(Exit);
+        //Added Score
+        pointsLabel = new JLabel("Points: 0");
+        pointsLabel.setBounds(195, 250, 100, 30);
+        mainPanel.add(pointsLabel);
+        cardPointings = new CardPointings(pointsLabel);
 
         setContentPane(mainPanel);
         //Frame Set

@@ -16,11 +16,12 @@ public class Easy extends JPanel {
     private int pairsMatched = 0;
     private int totalPairs;
     private String soundFilePath;
-
-    public Easy(JFrame frame, String soundFilePath) {
+    private CardPointings cardPointings;
+    public Easy(JFrame frame, String soundFilePath, CardPointings cardPointings, JLabel pointsLabel) {
         this.frame = frame;
         setLayout(new BorderLayout());
         this.soundFilePath = soundFilePath;
+        this.cardPointings = cardPointings;
 
         // Add timer label
         timerLabel = new JLabel("Time: " + timeElapsed);
@@ -105,6 +106,7 @@ public class Easy extends JPanel {
                                 if (pairsMatched == pairs) {
                                     timer.stop();
                                     JOptionPane.showMessageDialog(frame, "Congratulations! You've Earned Points");
+                                    cardPointings.addPoints();
                                     frame.dispose();
                                     new GameFrame();
                                 }
