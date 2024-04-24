@@ -129,7 +129,7 @@ public class GameFrame extends JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         // Background Sounds
-        playBackgroundMusic("C:\\Users\\Janrich\\Desktop\\ITE186\\BrahaBraha\\src\\Bg.wav");
+        playBackgroundMusic("C:\\Users\\Janrich\\Desktop\\ITE186\\src\\Bg.wav");
     }
 
     private void stopBackgroundMusic() {
@@ -140,7 +140,7 @@ public class GameFrame extends JFrame {
 
     private void playEasySound() {
         try {
-            File audio = new File("C:\\Users\\Janrich\\Desktop\\ITE186\\BrahaBraha\\src\\Easy.wav");
+            File audio = new File("C:\\Users\\Janrich\\Desktop\\ITE186\\src\\Easy.wav");
             AudioInputStream audios = AudioSystem.getAudioInputStream(audio);
             BgMusic = AudioSystem.getClip();
             BgMusic.open(audios);
