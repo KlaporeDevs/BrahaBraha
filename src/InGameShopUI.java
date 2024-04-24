@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -66,7 +65,3 @@ public class InGameShopUI extends JPanel{
         pointsLabel.setText("Points: " + points);
     }
 }
-=======
-public class InGameShopUI {
-}
->>>>>>> origin/master

@@ -43,19 +43,6 @@ public class Normal extends JPanel {
 
     private int initialGame(JPanel gamePanel) {
         ArrayList<ImageIcon> images = new ArrayList<>();
-<<<<<<< HEAD
-        //Images Holder
-        ImageIcon image1 = new ImageIcon("Card1.png");
-        ImageIcon image2 = new ImageIcon("Card2.png");
-        ImageIcon image3 = new ImageIcon("Card3.png");
-        ImageIcon image4 = new ImageIcon("Card4.png");
-        ImageIcon image5 = new ImageIcon("Card5.png");
-        ImageIcon image6 = new ImageIcon("Card6.png");
-        ImageIcon image7 = new ImageIcon("Card7.png");
-        ImageIcon image8 = new ImageIcon("Card8.png");
-        ImageIcon image9 = new ImageIcon("Card9.png");
-        ImageIcon image10 = new ImageIcon("Card10.png");
-=======
         // Images Holder
         ImageIcon image1 = new ImageIcon("src/CARDS SET 4 (DIAMONDS)/DIAMONDS3.png");
         ImageIcon image2 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS5.png");
@@ -66,12 +53,7 @@ public class Normal extends JPanel {
         ImageIcon image7 = new ImageIcon("src/CARDS SET 1/SPADES8.png");
         ImageIcon image8 = new ImageIcon("src/CARDS SET 4 (DIAMONDS)/DIAMONDS5.png");
         ImageIcon image9 = new ImageIcon("src/CARDS SET 1/SPADES9.png");
-<<<<<<< HEAD
-        ImageIcon image10 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS10.png");
->>>>>>> origin/master
-=======
         ImageIcon image10 = new ImageIcon("src/CARDS SET 4 (DIAMONDS)/DIAMONDS9.png");
->>>>>>> da80fdae61e9eaf466bef124e1c88d3b4ef5ff50
         // Add to The Screen
         images.add(image1);
         images.add(image1);
@@ -95,32 +77,18 @@ public class Normal extends JPanel {
         images.add(image10);
         Collections.shuffle(images);
 
-<<<<<<< HEAD
-        int buttonWidth = 100;
-        int buttonHeight = 100;
-        int pairs = images.size() / 2;
-        for (ImageIcon image : images){
-=======
         int buttonWidth = 200;
         int buttonHeight = 300;
         int pairs = images.size() / 2;
         for (ImageIcon image : images) {
->>>>>>> origin/master
             Image img = image.getImage();
             int imgWidth = img.getWidth(null);
             int imgHeight = img.getHeight(null);
 
-<<<<<<< HEAD
-            if (imgWidth > buttonWidth){
-                buttonWidth = imgWidth;
-            }
-            if (imgHeight > buttonHeight){
-=======
             if (imgWidth > buttonWidth) {
                 buttonWidth = imgWidth;
             }
             if (imgHeight > buttonHeight) {
->>>>>>> origin/master
                 buttonHeight = imgHeight;
             }
         }
@@ -158,29 +126,18 @@ public class Normal extends JPanel {
         }
         return pairs;
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
     public void addWindowListener() {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 timer.stop();
-<<<<<<< HEAD
-                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to close the game?", "Close Game", JOptionPane.YES_NO_OPTION);
-                if (result == JOptionPane.YES_OPTION) {
-                    frame.dispose();
-                    new GameFrame();
-                } else{
-=======
                 int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to close the game?",
                         "Close Game", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     frame.dispose();
                     new GameFrame();
                 } else {
->>>>>>> origin/master
                     frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                     timer.start();
                 }

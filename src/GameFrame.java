@@ -9,25 +9,17 @@ import java.io.IOException;
 
 public class GameFrame extends JFrame {
     private JPanel mainPanel;
+    JButton Shop;
     JButton Start;
     JButton Settings;
     JButton Exit;
-<<<<<<< HEAD
-    JButton Shop;
     JLabel pointsLabel;
-=======
-    JLabel pointsLabel; // Added JLabel for displaying points
->>>>>>> origin/master
     private boolean fullscreenchecked = false;
     private boolean timerchecked = false;
     private int musicvolume = 50;
     private int soundvolume = 50;
     private Clip BgMusic;
-<<<<<<< HEAD
-    private CardPointings cardPointings;
-=======
     private final CardPointings cardPointings;
->>>>>>> origin/master
 
     GameFrame() {
         // Icon
@@ -37,28 +29,29 @@ public class GameFrame extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-<<<<<<< HEAD
                 ImageIcon background = new ImageIcon("Bg1.jpeg");
-=======
-                ImageIcon background = new ImageIcon("Background.png");
->>>>>>> origin/master
                 g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), null);
             }
         };
         mainPanel.setLayout(null);
-<<<<<<< HEAD
-        //Buttons
-<<<<<<< HEAD
-        Shop = new JButton("Shop");
-=======
->>>>>>> origin/master
-=======
         // Buttons
->>>>>>> da80fdae61e9eaf466bef124e1c88d3b4ef5ff50
+        Shop = new JButton("Shop");
         Start = new JButton("Start");
         Settings = new JButton("Settings");
         Exit = new JButton("Exit");
         // Operations
+        Shop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame shopFrame = new JFrame("Shop");
+                InGameShopUI shopUI = new InGameShopUI(pointsLabel);
+                shopFrame.getContentPane().add(shopUI);
+                shopFrame.setSize(300, 400);
+                shopFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                shopFrame.setLocationRelativeTo(null);
+                shopFrame.setVisible(true);
+            }
+        });
         Start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,7 +75,6 @@ public class GameFrame extends JFrame {
                         easyFrame.setVisible(true);
                         dispose();
                         break;
-
                     case 1:
                         JFrame normalFrame = new JFrame("Normal Difficulty - BrahaBraha");
                         Normal normalPanel = new Normal(normalFrame);
@@ -127,61 +119,20 @@ public class GameFrame extends JFrame {
                 }
             }
         });
-<<<<<<< HEAD
-<<<<<<< HEAD
-        Shop.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFrame shopFrame = new JFrame("In Game Shop");
-                InGameShopUI shopUI = new InGameShopUI(pointsLabel);
-                shopFrame.getContentPane().add(shopUI);
-                shopFrame.setResizable(false);
-                shopFrame.setSize(300, 400);
-                shopFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                shopFrame.setLocationRelativeTo(null);
-                shopFrame.setVisible(true);
-            }
-        });
-        //Layouts
-        setLayout(null);
-        //Buttons Bounds
-        Shop.setBounds(10, 20, 100, 30);
-=======
-        //Layouts
-        setLayout(null);
-        //Buttons Bounds
->>>>>>> origin/master
-        Start.setBounds(195, 100, 100, 30);
-        Settings.setBounds(195, 150, 100, 30);
-        Exit.setBounds(195, 200, 100, 30);
-        //add Buttons
-<<<<<<< HEAD
-        mainPanel.add(Shop);
-=======
->>>>>>> origin/master
-        mainPanel.add(Start);
-        mainPanel.add(Settings);
-        mainPanel.add(Exit);
-        //Added Score
-<<<<<<< HEAD
-        pointsLabel = new JLabel("Points:");
-        pointsLabel.setForeground(Color.GREEN);
-=======
-=======
         // Layouts
         setLayout(null);
         // Buttons Bounds
+        Shop.setBounds(10, 20, 100, 30);
         Start.setBounds(195, 100, 100, 30);
         Settings.setBounds(195, 150, 100, 30);
         Exit.setBounds(195, 200, 100, 30);
         // add Buttons
+        mainPanel.add(Shop);
         mainPanel.add(Start);
         mainPanel.add(Settings);
         mainPanel.add(Exit);
         // Added Score
->>>>>>> da80fdae61e9eaf466bef124e1c88d3b4ef5ff50
         pointsLabel = new JLabel("Points: 0");
->>>>>>> origin/master
         pointsLabel.setBounds(400, 20, 100, 30);
         mainPanel.add(pointsLabel);
         cardPointings = new CardPointings(pointsLabel);
@@ -195,11 +146,7 @@ public class GameFrame extends JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         // Background Sounds
-<<<<<<< HEAD
         playBackgroundMusic("C:\\Users\\Janrich\\Desktop\\ITE186\\src\\Bg.wav");
-=======
-        playBackgroundMusic("C:\\Users\\Janrich\\Desktop\\ITE186\\BrahaBraha\\src\\Bg.wav");
->>>>>>> origin/master
     }
 
     private void stopBackgroundMusic() {
@@ -210,11 +157,7 @@ public class GameFrame extends JFrame {
 
     private void playEasySound() {
         try {
-<<<<<<< HEAD
             File audio = new File("C:\\Users\\Janrich\\Desktop\\ITE186\\src\\Easy.wav");
-=======
-            File audio = new File("C:\\Users\\Janrich\\Desktop\\ITE186\\BrahaBraha\\src\\Easy.wav");
->>>>>>> origin/master
             AudioInputStream audios = AudioSystem.getAudioInputStream(audio);
             BgMusic = AudioSystem.getClip();
             BgMusic.open(audios);
