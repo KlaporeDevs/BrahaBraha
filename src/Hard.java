@@ -43,22 +43,22 @@ public class Hard extends JPanel {
 
     private int initialGame(JPanel gamePanel) {
         ArrayList<ImageIcon> images = new ArrayList<>();
-        //Images Holder
-        ImageIcon image1 = new ImageIcon("Card1.png");
-        ImageIcon image2 = new ImageIcon("Card2.png");
-        ImageIcon image3 = new ImageIcon("Card3.png");
-        ImageIcon image4 = new ImageIcon("Card4.png");
-        ImageIcon image5 = new ImageIcon("Card5.png");
-        ImageIcon image6 = new ImageIcon("Card6.png");
-        ImageIcon image7 = new ImageIcon("Card7.png");
-        ImageIcon image8 = new ImageIcon("Card8.png");
-        ImageIcon image9 = new ImageIcon("Card9.png");
-        ImageIcon image10 = new ImageIcon("Card10.png");
-        ImageIcon image11 = new ImageIcon("Card11.png");
-        ImageIcon image12 = new ImageIcon("Card12.png");
-        ImageIcon image13 = new ImageIcon("Card13.png");
-        ImageIcon image14 = new ImageIcon("Card14.png");
-        ImageIcon image15 = new ImageIcon("Card15.png");
+        // Images Holder
+        ImageIcon image1 = new ImageIcon("src/CARDS SET 1/SPADES10.png");
+        ImageIcon image2 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS3.png");
+        ImageIcon image3 = new ImageIcon("src/CARDS SET 4 (DIAMONDS)/DIAMONDS6.png");
+        ImageIcon image4 = new ImageIcon("src/CARDS SET 1/SPADES5.png");
+        ImageIcon image5 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS6.png");
+        ImageIcon image6 = new ImageIcon("src/CARDS SET 4 (DIAMONDS)/DIAMONDS5.png");
+        ImageIcon image7 = new ImageIcon("src/CARDS SET 1/SPADES8.png");
+        ImageIcon image8 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS9.png");
+        ImageIcon image9 = new ImageIcon("src/CARDS SET 4 (DIAMONDS)/DIAMONDS3.png");
+        ImageIcon image10 = new ImageIcon("src/CARDS SET 1/SPADES3.png");
+        ImageIcon image11 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS10.png");
+        ImageIcon image12 = new ImageIcon("src/CARDS SET 3 (CLUBS)/CLUBS5.png");
+        ImageIcon image13 = new ImageIcon("src/CARDS SET 1/SPADES6.png");
+        ImageIcon image14 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS7.png");
+        ImageIcon image15 = new ImageIcon("src/CARDS SET 3 (CLUBS)/CLUBS8.png");
         // Add to The Screen
         images.add(image1);
         images.add(image1);
@@ -96,15 +96,15 @@ public class Hard extends JPanel {
         int buttonHeight = 100;
         int pairs = images.size() / 2;
 
-        for (ImageIcon image : images){
+        for (ImageIcon image : images) {
             Image img = image.getImage();
             int imgWidth = img.getWidth(null);
             int imgHeight = img.getHeight(null);
 
-            if(imgWidth > buttonWidth){
+            if (imgWidth > buttonWidth) {
                 buttonWidth = imgWidth;
             }
-            if (imgHeight > buttonHeight){
+            if (imgHeight > buttonHeight) {
                 buttonHeight = imgHeight;
             }
         }
@@ -142,15 +142,17 @@ public class Hard extends JPanel {
         }
         return pairs;
     }
+
     public void addWindowListener() {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to Quit the game?", "Return To Main Menu", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to Quit the game?",
+                        "Return To Main Menu", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     frame.dispose();
                     new GameFrame();
-                } else{
+                } else {
                     frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 }
             }
