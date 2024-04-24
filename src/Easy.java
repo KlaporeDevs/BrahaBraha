@@ -97,6 +97,7 @@ public class Easy extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     JButton clickedButton = (JButton) e.getSource();
+                    CardAnimations.flipCard(clickedButton, (ImageIcon) clickedButton.getIcon());
                     if (selectButton == null) {
                         selectButton = clickedButton;
                         selectButton.setEnabled(false);
