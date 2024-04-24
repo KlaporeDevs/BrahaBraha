@@ -12,13 +12,14 @@ public class GameFrame extends JFrame {
     JButton Start;
     JButton Settings;
     JButton Exit;
-    JLabel pointsLabel; // Added JLabel for displaying points
+    JButton Shop;
+    JLabel pointsLabel;
     private boolean fullscreenchecked = false;
     private boolean timerchecked = false;
     private int musicvolume = 50;
     private int soundvolume = 50;
     private Clip BgMusic;
-    private final CardPointings cardPointings;
+    private CardPointings cardPointings;
 
     GameFrame() {
         //Icon
@@ -28,12 +29,13 @@ public class GameFrame extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon background = new ImageIcon("Background.png");
+                ImageIcon background = new ImageIcon("Bg1.jpeg");
                 g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), null);
             }
         };
         mainPanel.setLayout(null);
         //Buttons
+        Shop = new JButton("Shop");
         Start = new JButton("Start");
         Settings = new JButton("Settings");
         Exit = new JButton("Exit");
@@ -104,18 +106,34 @@ public class GameFrame extends JFrame {
                 }
             }
         });
+        Shop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame shopFrame = new JFrame("In Game Shop");
+                InGameShopUI shopUI = new InGameShopUI(pointsLabel);
+                shopFrame.getContentPane().add(shopUI);
+                shopFrame.setResizable(false);
+                shopFrame.setSize(300, 400);
+                shopFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                shopFrame.setLocationRelativeTo(null);
+                shopFrame.setVisible(true);
+            }
+        });
         //Layouts
         setLayout(null);
         //Buttons Bounds
+        Shop.setBounds(10, 20, 100, 30);
         Start.setBounds(195, 100, 100, 30);
         Settings.setBounds(195, 150, 100, 30);
         Exit.setBounds(195, 200, 100, 30);
         //add Buttons
+        mainPanel.add(Shop);
         mainPanel.add(Start);
         mainPanel.add(Settings);
         mainPanel.add(Exit);
         //Added Score
-        pointsLabel = new JLabel("Points: 0");
+        pointsLabel = new JLabel("Points:");
+        pointsLabel.setForeground(Color.GREEN);
         pointsLabel.setBounds(400, 20, 100, 30);
         mainPanel.add(pointsLabel);
         cardPointings = new CardPointings(pointsLabel);

@@ -16,7 +16,7 @@ public class Easy extends JPanel {
     private int pairsMatched = 0;
     private int totalPairs;
     private String soundFilePath;
-    private CardPointings cardPointings;
+    private final CardPointings cardPointings;
     public Easy(JFrame frame, String soundFilePath, CardPointings cardPointings, JLabel pointsLabel) {
         this.frame = frame;
         setLayout(new BorderLayout());
@@ -68,8 +68,8 @@ public class Easy extends JPanel {
         images.add(image5);
         Collections.shuffle(images);
 
-        int buttonWidth = 100;
-        int buttonHeight = 100;
+        int buttonWidth = 234;
+        int buttonHeight = 350;
         int pairs = images.size() / 2;
 
         for (ImageIcon image : images) {
