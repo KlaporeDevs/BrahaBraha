@@ -30,7 +30,7 @@ public class GameFrame extends JFrame {
 >>>>>>> origin/master
 
     GameFrame() {
-        //Icon
+        // Icon
         ImageIcon brahabrahalogo = new ImageIcon("logo.png");
         setIconImage(brahabrahalogo.getImage());
         mainPanel = new JPanel() {
@@ -46,23 +46,28 @@ public class GameFrame extends JFrame {
             }
         };
         mainPanel.setLayout(null);
+<<<<<<< HEAD
         //Buttons
 <<<<<<< HEAD
         Shop = new JButton("Shop");
 =======
 >>>>>>> origin/master
+=======
+        // Buttons
+>>>>>>> da80fdae61e9eaf466bef124e1c88d3b4ef5ff50
         Start = new JButton("Start");
         Settings = new JButton("Settings");
         Exit = new JButton("Exit");
-        //Operations
+        // Operations
         Start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 stopBackgroundMusic();
                 playEasySound();
-                String[] Choice = {"Easy", "Normal", "Hard"};
-                int choice = JOptionPane.showOptionDialog(null, "Choose Difficulty", "Select Difficulty", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, Choice, Choice[0]);
-                //Choice Handling
+                String[] Choice = { "Easy", "Normal", "Hard" };
+                int choice = JOptionPane.showOptionDialog(null, "Choose Difficulty", "Select Difficulty",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, Choice, Choice[0]);
+                // Choice Handling
                 switch (choice) {
                     case 0:
                         JFrame easyFrame = new JFrame("Easy Difficulty - BrahaBraha");
@@ -115,12 +120,14 @@ public class GameFrame extends JFrame {
         Exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int pili = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Exit", "Exit", JOptionPane.YES_NO_OPTION);
+                int pili = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Exit", "Exit",
+                        JOptionPane.YES_NO_OPTION);
                 if (pili == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
             }
         });
+<<<<<<< HEAD
 <<<<<<< HEAD
         Shop.addActionListener(new ActionListener() {
             @Override
@@ -160,6 +167,19 @@ public class GameFrame extends JFrame {
         pointsLabel = new JLabel("Points:");
         pointsLabel.setForeground(Color.GREEN);
 =======
+=======
+        // Layouts
+        setLayout(null);
+        // Buttons Bounds
+        Start.setBounds(195, 100, 100, 30);
+        Settings.setBounds(195, 150, 100, 30);
+        Exit.setBounds(195, 200, 100, 30);
+        // add Buttons
+        mainPanel.add(Start);
+        mainPanel.add(Settings);
+        mainPanel.add(Exit);
+        // Added Score
+>>>>>>> da80fdae61e9eaf466bef124e1c88d3b4ef5ff50
         pointsLabel = new JLabel("Points: 0");
 >>>>>>> origin/master
         pointsLabel.setBounds(400, 20, 100, 30);
@@ -167,7 +187,7 @@ public class GameFrame extends JFrame {
         cardPointings = new CardPointings(pointsLabel);
 
         setContentPane(mainPanel);
-        //Frame Set
+        // Frame Set
         this.setSize(500, 600);
         this.setTitle("BrahaBraha");
         this.setVisible(true);
@@ -218,12 +238,12 @@ public class GameFrame extends JFrame {
     }
 
     private void showSettingsDialog() {
-        //Settings Contents
+        // Settings Contents
         JDialog settingsDialogs = new JDialog(this, "Settings", true);
         settingsDialogs.setSize(300, 300);
         settingsDialogs.setLayout(null);
         settingsDialogs.setLocationRelativeTo(this);
-        //Components
+        // Components
         JCheckBox fullscreen = new JCheckBox("FullScreen");
         fullscreen.setBounds(20, 20, 150, 30);
         fullscreen.setSelected(fullscreenchecked);
@@ -247,7 +267,7 @@ public class GameFrame extends JFrame {
         JSlider music = new JSlider(JSlider.HORIZONTAL, 0, 100, musicvolume);
         music.setBounds(20, 130, 200, 30);
         music.setPaintTicks(false);
-        //Indicator
+        // Indicator
         JLabel musicIndicator = new JLabel(musicvolume + "");
         musicIndicator.setBounds(230, 130, 50, 30);
         music.addChangeListener(new ChangeListener() {
@@ -271,10 +291,10 @@ public class GameFrame extends JFrame {
                 soundIndicator.setText(soundvolume + "");
             }
         });
-        //Save Settings
+        // Save Settings
         JButton save = new JButton("Save Settings");
         save.setBounds(100, 230, 120, 30);
-        //save button config
+        // save button config
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -282,7 +302,7 @@ public class GameFrame extends JFrame {
                 settingsDialogs.dispose();
             }
         });
-        //add to settings parts
+        // add to settings parts
         settingsDialogs.add(fullscreen);
         settingsDialogs.add(timer);
         settingsDialogs.add(music);
@@ -292,7 +312,7 @@ public class GameFrame extends JFrame {
         settingsDialogs.add(soundIndicator);
         settingsDialogs.add(sounds);
         settingsDialogs.add(save);
-        //Visibility
+        // Visibility
         settingsDialogs.setVisible(true);
     }
 }

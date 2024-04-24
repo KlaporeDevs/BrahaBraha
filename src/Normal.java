@@ -57,17 +57,21 @@ public class Normal extends JPanel {
         ImageIcon image10 = new ImageIcon("Card10.png");
 =======
         // Images Holder
-        ImageIcon image1 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS2.png");
-        ImageIcon image2 = new ImageIcon("src/CARDS SET 1/SPADES3.png");
-        ImageIcon image3 = new ImageIcon("src/CARDS SET 3 (CLUBS)/CLUBS4.png");
+        ImageIcon image1 = new ImageIcon("src/CARDS SET 4 (DIAMONDS)/DIAMONDS3.png");
+        ImageIcon image2 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS5.png");
+        ImageIcon image3 = new ImageIcon("src/CARDS SET 4 (DIAMONDS)/DIAMONDS9.png");
         ImageIcon image4 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS5.png");
-        ImageIcon image5 = new ImageIcon("src/CARDS SET 3 (CLUBS)/CLUBS6.png");
+        ImageIcon image5 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS8.png");
         ImageIcon image6 = new ImageIcon("src/CARDS SET 3 (CLUBS)/CLUBS7.png");
         ImageIcon image7 = new ImageIcon("src/CARDS SET 1/SPADES8.png");
-        ImageIcon image8 = new ImageIcon("src/CARDS SET 3 (CLUBS)/CLUBS8.png");
+        ImageIcon image8 = new ImageIcon("src/CARDS SET 4 (DIAMONDS)/DIAMONDS5.png");
         ImageIcon image9 = new ImageIcon("src/CARDS SET 1/SPADES9.png");
+<<<<<<< HEAD
         ImageIcon image10 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS10.png");
 >>>>>>> origin/master
+=======
+        ImageIcon image10 = new ImageIcon("src/CARDS SET 4 (DIAMONDS)/DIAMONDS9.png");
+>>>>>>> da80fdae61e9eaf466bef124e1c88d3b4ef5ff50
         // Add to The Screen
         images.add(image1);
         images.add(image1);
