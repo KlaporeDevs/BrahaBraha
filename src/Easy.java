@@ -54,11 +54,11 @@ public class Easy extends JPanel {
     private int initialGame(JPanel gamePanel) {
         ArrayList<ImageIcon> images = new ArrayList<>();
         // Images Holder
-        ImageIcon image1 = new ImageIcon("src/CARDS SET 1/SPADES2.png");
-        ImageIcon image2 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS3.png");
-        ImageIcon image3 = new ImageIcon("src/CARDS SET 3 (CLUBS)/CLUBS3.png");
-        ImageIcon image4 = new ImageIcon("src/CARDS SET 2 (HEARTS)/HEARTS5.png");
-        ImageIcon image5 = new ImageIcon("src/CARDS SET 1/SPADES6.png");
+        ImageIcon image1 = new ImageIcon("src/NEW SPADES/1.png");
+        ImageIcon image2 = new ImageIcon("src/NEW HEARTS/3.png");
+        ImageIcon image3 = new ImageIcon("src/NEW CLUBS/4.png");
+        ImageIcon image4 = new ImageIcon("src/NEW DIAMONDS/5.png");
+        ImageIcon image5 = new ImageIcon("src/NEW SPADES/6.png");
         // Add to The Screen
         images.add(image1);
         images.add(image1);
