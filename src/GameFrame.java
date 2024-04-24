@@ -116,7 +116,7 @@ public class GameFrame extends JFrame {
         mainPanel.add(Exit);
         //Added Score
         pointsLabel = new JLabel("Points: 0");
-        pointsLabel.setBounds(195, 250, 100, 30);
+        pointsLabel.setBounds(400, 20, 100, 30);
         mainPanel.add(pointsLabel);
         cardPointings = new CardPointings(pointsLabel);
 
