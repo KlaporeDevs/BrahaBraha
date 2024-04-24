@@ -4,10 +4,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
 
 public class GameFrame extends JFrame {
+    private final AppSounds appSounds;
     private JPanel mainPanel;
     JButton Shop;
     JButton Start;
@@ -23,6 +22,8 @@ public class GameFrame extends JFrame {
 
     GameFrame() {
         // Icon
+        appSounds = new AppSounds();
+        playBackgroundMusic();
         ImageIcon brahabrahalogo = new ImageIcon("logo.png");
         setIconImage(brahabrahalogo.getImage());
         mainPanel = new JPanel() {
@@ -55,8 +56,6 @@ public class GameFrame extends JFrame {
         Start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                stopBackgroundMusic();
-                playEasySound();
                 String[] Choice = { "Easy", "Normal", "Hard" };
                 int choice = JOptionPane.showOptionDialog(null, "Choose Difficulty", "Select Difficulty",
                         JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, Choice, Choice[0]);
@@ -145,41 +144,16 @@ public class GameFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        // Background Sounds
-        playBackgroundMusic("C:\\Users\\Janrich\\Desktop\\ITE186\\src\\Bg.wav");
     }
-
-    private void stopBackgroundMusic() {
-        if (BgMusic != null && BgMusic.isRunning()) {
-            BgMusic.stop();
-        }
+    private void playBackgroundMusic(){
+        appSounds.playBackgroundMusic();
     }
-
-    private void playEasySound() {
-        try {
-            File audio = new File("C:\\Users\\Janrich\\Desktop\\ITE186\\src\\Easy.wav");
-            AudioInputStream audios = AudioSystem.getAudioInputStream(audio);
-            BgMusic = AudioSystem.getClip();
-            BgMusic.open(audios);
-            BgMusic.loop(Clip.LOOP_CONTINUOUSLY);
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
-            ex.printStackTrace();
-        }
+    private void stopBackgroundMusic(){
+        appSounds.stopBackgroundMusic();
     }
-
-    private void playBackgroundMusic(String filePath) {
-        try {
-            File audioFile = new File(filePath);
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-
-            BgMusic = AudioSystem.getClip();
-            BgMusic.open(audioStream);
-            BgMusic.loop(Clip.LOOP_CONTINUOUSLY);
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
-            ex.printStackTrace();
-        }
+    private void playEasySound(){
+        appSounds.playEasySound();
     }
-
     private void showSettingsDialog() {
         // Settings Contents
         JDialog settingsDialogs = new JDialog(this, "Settings", true);

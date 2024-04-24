@@ -49,7 +49,6 @@ public class Easy extends JPanel {
         });
         timer.start();
     }
-
     // initialGame method initializes the game board with the card images
     private int initialGame(JPanel gamePanel) {
         ArrayList<ImageIcon> images = new ArrayList<>();
