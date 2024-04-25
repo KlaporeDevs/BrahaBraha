@@ -6,7 +6,7 @@ public class CardAnimations {
     private static final int FLIP_DELAY = 1000;
 
     public static void flipCard(JButton cardButton, ImageIcon image) {
-        Time timer = new Time(FLIP_DELAY, new ActionListener() {
+        Timer timer = new Timer(FLIP_DELAY, new ActionListener() {
             boolean flipped = false;
 
             @Override
