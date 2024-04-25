@@ -25,7 +25,8 @@ public class Easy extends JPanel {
         setLayout(new BorderLayout());
         this.soundFilePath = soundFilePath;
         this.cardPointings = cardPointings;
-
+        ImageIcon brahabrahaLogo = new ImageIcon("src/logo.png");
+        frame.setIconImage(brahabrahaLogo.getImage());
         // Add timer label
         timerLabel = new JLabel("Time: " + timeElapsed);
         timerLabel.setHorizontalAlignment(SwingConstants.CENTER);

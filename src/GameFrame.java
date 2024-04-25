@@ -17,20 +17,19 @@ public class GameFrame extends JFrame {
     private boolean timerchecked = false;
     private int musicvolume = 50;
     private int soundvolume = 50;
-    private Clip BgMusic;
     private final CardPointings cardPointings;
 
     GameFrame() {
         // Icon
         appSounds = new AppSounds();
         playBackgroundMusic();
-        ImageIcon brahabrahalogo = new ImageIcon("logo.png");
+        ImageIcon brahabrahalogo = new ImageIcon("src/logo.png");
         setIconImage(brahabrahalogo.getImage());
         mainPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon background = new ImageIcon("Bg1.jpeg");
+                ImageIcon background = new ImageIcon("src/Bg1.jpeg");
                 g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), null);
             }
         };
@@ -45,11 +44,14 @@ public class GameFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame shopFrame = new JFrame("Shop");
+                ImageIcon brahabrahalogo = new ImageIcon("src/logo.png");
+                shopFrame.setIconImage(brahabrahalogo.getImage());
                 InGameShopUI shopUI = new InGameShopUI(pointsLabel);
                 shopFrame.getContentPane().add(shopUI);
                 shopFrame.setSize(300, 400);
                 shopFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 shopFrame.setLocationRelativeTo(null);
+                shopFrame.setResizable(false);
                 shopFrame.setVisible(true);
             }
         });
@@ -132,6 +134,7 @@ public class GameFrame extends JFrame {
         mainPanel.add(Exit);
         // Added Score
         pointsLabel = new JLabel("Points: 0");
+        pointsLabel.setForeground(Color.GREEN);
         pointsLabel.setBounds(400, 20, 100, 30);
         mainPanel.add(pointsLabel);
         cardPointings = new CardPointings(pointsLabel);

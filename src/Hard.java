@@ -16,6 +16,8 @@ public class Hard extends JPanel {
     public Hard(JFrame frame) {
         this.frame = frame;
         setLayout(new BorderLayout());
+        ImageIcon brahabrahalogo = new ImageIcon("src/logo.png");
+        frame.setIconImage(brahabrahalogo.getImage());
 
         // Add timer label
         timerLabel = new JLabel("Time: " + timeElapsed);
